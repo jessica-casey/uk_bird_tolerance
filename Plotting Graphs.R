@@ -1,6 +1,8 @@
 library(ggplot2)
 library(dplyr)
 
+load("C:/Data1/UK/tolerance_output_with_conservation.RData")
+
 #### Big Graph ####
 data_for_0.1_plot <- Full_tolerances[, c("mean_low_hfi_0.1", "mean_high_hfi_0.1")]
 data_for_0.1_plot <- data_for_0.1_plot[order(data_for_0.1_plot$mean_low_hfi_0.1), ]
@@ -190,4 +192,111 @@ plot(
   main = "All species, 0.5",
   pch = 19,
   col = colors[factor(test$uk_conservation_status)]
+)
+
+#### Habitats ####
+habitats <- read.csv("C:/Data1/UK/habitats.csv")
+
+# Farmland
+farmland_species <- habitats[c(which(habitats$farmland == 1)), ]
+data_for_farmland_graph <- tolerance_output_with_conservation[c(which(rownames(tolerance_output_with_conservation) %in% farmland_species$species.scientific)), ]
+
+plot(
+  x = data_for_farmland_graph$mean_peak,
+  y = data_for_farmland_graph$mean_right_proportion_breadth_0.5,
+  xlab = "Mean peak",
+  ylab = "Mean right proportion breadth",
+  main = "Farmland species",
+  abline(a = 1, b = -0.02)
+)
+
+# Grassland
+grassland_species <- habitats[c(which(habitats$grassland == 1)), ]
+data_for_grassland_graph <- tolerance_output_with_conservation[c(which(rownames(tolerance_output_with_conservation) %in% grassland_species$species.scientific)), ]
+
+plot(
+  x = data_for_grassland_graph$mean_peak,
+  y = data_for_grassland_graph$mean_right_proportion_breadth_0.5,
+  xlab = "Mean peak",
+  ylab = "Mean right proportion breadth",
+  main = "Grassland species",
+  abline(a = 1, b = -0.02)
+)
+
+# Wetland
+wetland_species <- habitats[c(which(habitats$wetland == 1)), ]
+data_for_wetland_graph <- tolerance_output_with_conservation[c(which(rownames(tolerance_output_with_conservation) %in% wetland_species$species.scientific)), ]
+
+plot(
+  x = data_for_wetland_graph$mean_peak,
+  y = data_for_wetland_graph$mean_right_proportion_breadth_0.5,
+  xlab = "Mean peak",
+  ylab = "Mean right proportion breadth",
+  main = "Wetland species",
+  abline(a = 1, b = -0.02)
+)
+
+# Upland
+upland_species <- habitats[c(which(habitats$upland == 1)), ]
+data_for_upland_graph <- tolerance_output_with_conservation[c(which(rownames(tolerance_output_with_conservation) %in% upland_species$species.scientific)), ]
+
+plot(
+  x = data_for_upland_graph$mean_peak,
+  y = data_for_upland_graph$mean_right_proportion_breadth_0.5,
+  xlab = "Mean peak",
+  ylab = "Mean right proportion breadth",
+  main = "Upland species",
+  abline(a = 1, b = -0.02)
+)
+
+# Urban and Suburban
+urban.and.suburban_species <- habitats[c(which(habitats$urban.and.suburban == 1)), ]
+data_for_urban.and.suburban_graph <- tolerance_output_with_conservation[c(which(rownames(tolerance_output_with_conservation) %in% urban.and.suburban_species$species.scientific)), ]
+
+plot(
+  x = data_for_urban.and.suburban_graph$mean_peak,
+  y = data_for_urban.and.suburban_graph$mean_right_proportion_breadth_0.5,
+  xlab = "Mean peak",
+  ylab = "Mean right proportion breadth",
+  main = "Urban and suburban species",
+  abline(a = 1, b = -0.02)
+)
+
+# Heathland
+heathland_species <- habitats[c(which(habitats$heathland == 1)), ]
+data_for_heathland_graph <- tolerance_output_with_conservation[c(which(rownames(tolerance_output_with_conservation) %in% heathland_species$species.scientific)), ]
+
+plot(
+  x = data_for_heathland_graph$mean_peak,
+  y = data_for_heathland_graph$mean_right_proportion_breadth_0.5,
+  xlab = "Mean peak",
+  ylab = "Mean right proportion breadth",
+  main = "Heathland species",
+  abline(a = 1, b = -0.02)
+)
+
+# Woodland
+woodland_species <- habitats[c(which(habitats$woodland == 1)), ]
+data_for_woodland_graph <- tolerance_output_with_conservation[c(which(rownames(tolerance_output_with_conservation) %in% woodland_species$species.scientific)), ]
+
+plot(
+  x = data_for_woodland_graph$mean_peak,
+  y = data_for_woodland_graph$mean_right_proportion_breadth_0.5,
+  xlab = "Mean peak",
+  ylab = "Mean right proportion breadth",
+  main = "Woodland species",
+  abline(a = 1, b = -0.02)
+)
+
+# Marine and Intertidal
+marine.and.intertidal_species <- habitats[c(which(habitats$marine.and.intertidal == 1)), ]
+data_for_marine.and.intertidal_graph <- tolerance_output_with_conservation[c(which(rownames(tolerance_output_with_conservation) %in% marine.and.intertidal_species$species.scientific)), ]
+
+plot(
+  x = data_for_marine.and.intertidal_graph$mean_peak,
+  y = data_for_marine.and.intertidal_graph$mean_right_proportion_breadth_0.5,
+  xlab = "Mean peak",
+  ylab = "Mean right proportion breadth",
+  main = "Marine and intertidal species",
+  abline(a = 1, b = -0.02)
 )
